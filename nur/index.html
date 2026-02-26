@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nur — Гигиена рта и зубов</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="home">
+    <header id="homeHeader" class="container header" hidden>
+      <a class="brand" href="./index.html" aria-label="На главную">
+        <div class="logo" aria-hidden="true">N</div>
+        <div>
+          <div class="title">Nur</div>
+          <div class="subtitle">Гигиена рта и зубов</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Разделы" hidden>
+        <a href="./index.html" data-nav="home">Главная</a>
+        <a href="./profile.html" data-nav="profile">Профиль</a>
+        <a href="./survey.html" data-nav="survey">Опрос и советы</a>
+        <a href="./history.html" data-nav="history">История</a>
+      </nav>
+
+      <div class="headerRight">
+        <div id="userBadge" class="pill" hidden></div>
+        <button id="themeToggle" class="btn btnGhost" type="button">Тема</button>
+        <button id="resetAllBtn" class="btn btnGhost" type="button" hidden>Сбросить всё</button>
+      </div>
+    </header>
+
+    <main class="container layout">
+      <section id="authSection" class="authWrap">
+        <div class="card authCard" aria-label="Вход или регистрация">
+          <div class="authTabs" role="tablist" aria-label="Способ входа">
+            <button id="authTabEmail" class="authTab" type="button" role="tab" aria-selected="true">✉ Email</button>
+            <button id="authTabPhone" class="authTab" type="button" role="tab" aria-selected="false">📱 Телефон</button>
+          </div>
+
+          <div class="authIcon" aria-hidden="true">✉</div>
+
+          <div class="authHead">
+            <h1 id="authTitle" class="h2" style="margin:0">Вход через Email</h1>
+            <div id="authSub" class="muted small">Войдите с помощью email и пароля</div>
+          </div>
+
+          <form id="authForm" class="form" novalidate>
+            <label id="emailField" class="field">
+              <span>Email *</span>
+              <input id="authEmailInput" name="email" inputmode="email" autocomplete="email" placeholder="name@example.com" />
+            </label>
+
+            <label id="phoneField" class="field" hidden>
+              <span>Телефон *</span>
+              <input id="authPhoneInput" name="phone" inputmode="tel" autocomplete="tel" placeholder="+7 7xx xxx xx xx" />
+            </label>
+
+            <div class="row" style="justify-content:space-between; align-items:baseline">
+              <span>Пароль *</span>
+              <button id="forgotBtn" class="linkBtn" type="button">Забыли пароль?</button>
+            </div>
+            <div class="pwRow">
+              <input id="authPasswordInput" name="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+              <button id="pwToggle" class="iconBtn" type="button" aria-label="Показать пароль" title="Показать пароль">👁</button>
+            </div>
+
+            <div id="authExtra" class="authExtra" hidden>
+              <div class="twoCol">
+                <label class="field">
+                  <span>Возраст *</span>
+                  <input id="authAgeInput" name="age" inputmode="numeric" type="number" min="1" max="120" placeholder="Например: 21" />
+                </label>
+                <label class="field">
+                  <span>ИИН (12 цифр) *</span>
+                  <input id="authIinInput" name="iin" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="000000000000" />
+                </label>
+              </div>
+              <div class="muted small">ИИН — это 12-значный идентификатор гражданина РК.</div>
+            </div>
+
+            <button id="authSubmitBtn" class="btn btnFull" type="submit">Войти</button>
+
+            <div id="authMsg" class="msg" role="status" aria-live="polite" hidden></div>
+          </form>
+
+          <div class="authFooter muted small">
+            <span id="authSwitchText">Нет аккаунта?</span>
+            <button id="authSwitchBtn" class="linkBtn" type="button">Зарегистрироваться</button>
+          </div>
+        </div>
+      </section>
+
+      <div id="homeApp" hidden>
+      <section class="card">
+        <div class="homeTop">
+          <div>
+            <h1 id="homeGreeting" class="h1">Главный экран</h1>
+            <p class="muted" style="margin:6px 0 0">Отмечайте задачи — получайте бонусы и держите серию.</p>
+          </div>
+          <div class="statsRow" aria-label="Статистика">
+            <div class="stat">
+              <div class="statLabel">Кошелёк</div>
+              <div id="homeBalance" class="statValue">0</div>
+            </div>
+            <div class="stat">
+              <div class="statLabel">Серия</div>
+              <div id="homeStreak" class="statValue">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt12">
+          <a class="btn" href="./survey.html">Получить советы</a>
+          <a class="btn btnGhost" href="./profile.html">Профиль</a>
+          <a class="btn btnGhost" href="./history.html">История</a>
+        </div>
+      </section>
+
+      <section id="todaySection" class="card" aria-labelledby="todayTitle">
+        <div class="cardHeader">
+          <h2 id="todayTitle">Сегодня</h2>
+          <div id="todayMeta" class="muted"></div>
+        </div>
+
+        <div id="todayTasks" class="checklist"></div>
+        <div class="todayFooter">
+          <div class="muted">
+            <span id="todayProgress">0/0</span> • <span id="todayBonus">Бонус: +0</span>
+          </div>
+          <button id="todayResetBtn" class="btn btnGhost" type="button">Сбросить день</button>
+        </div>
+      </section>
+
+      <section id="calendarSection" class="card" aria-labelledby="calendarTitle">
+        <div class="cardHeader">
+          <h2 id="calendarTitle">Календарь чистки</h2>
+          <div class="calHeader">
+            <button id="calPrev" class="iconBtn" type="button" aria-label="Предыдущий месяц">‹</button>
+            <div id="calMonth" class="calMonth"></div>
+            <button id="calNext" class="iconBtn" type="button" aria-label="Следующий месяц">›</button>
+          </div>
+        </div>
+
+        <div class="muted small">Нажмите на день, чтобы добавить упоминание/заметку.</div>
+
+        <div class="calWeek">
+          <div>Пн</div><div>Вт</div><div>Ср</div><div>Чт</div><div>Пт</div><div>Сб</div><div>Вс</div>
+        </div>
+        <div id="calGrid" class="calGrid" aria-label="Календарь"></div>
+
+        <div class="legend">
+          <span class="dot dotNone"></span><span class="muted small">нет отметок</span>
+          <span class="dot dotPart"></span><span class="muted small">частично</span>
+          <span class="dot dotGood"></span><span class="muted small">2 чистки</span>
+          <span class="dot dotPerfect"></span><span class="muted small">всё выполнено</span>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="h2" style="margin-bottom:8px">Важно</h2>
+        <p class="muted" style="margin:0">Это не медицинский диагноз. При сильной боли, отёке, температуре, гное или травме — обратитесь к стоматологу.</p>
+      </section>
+      </div>
+    </main>
+
+    <footer class="container footer">
+      <div class="muted small">© Nur — локальный прототип</div>
+    </footer>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>
